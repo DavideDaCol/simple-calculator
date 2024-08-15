@@ -24,13 +24,11 @@ function parseInput(current){
     return;
   }
   const inp = Number(current);
-  if(inp && !isSecond){ // case: input is a number and the first value
+  if((inp || inp === 0) && !isSecond){ // case: input is a number and the first value
     firstOp = (firstOp * 10) + inp;
     displayOnScreen(firstOp);
   } else if (isNaN(inp)){ // case: input is an operand
     if(isSecond){
-      console.log("yuh");
-      
       evaluateExpression();
       displayOnScreen(result);
       firstOp = result; // treats result of previous operation as first value
@@ -60,6 +58,7 @@ function evaluateExpression(){
       result = firstOp / secondOp;
       break;
     default:
+      result = 0;
       break;
   }
 }
