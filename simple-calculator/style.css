@@ -9,7 +9,7 @@ body{
 #content-wrap{
   margin: auto;
   width: 25vw;
-  height: 50vh;
+  height: 60vh;
   position: fixed;
   top: 0;
   left: 0;
@@ -53,10 +53,12 @@ h1{
 }
 
 #operators{
+  display: flex;
   width: 90%;
   height: 10%;
   background-color: blue;
   border-radius: 5px;
+  border: 2px solid rgb(6, 0, 167);
 }
 
 #numbers{
@@ -72,13 +74,27 @@ h1{
 .operator-btn{
   width: 19%;
   height: 100%;
-  border: 0;
+  flex: 1;
+  border-top: 0;
+  border-bottom: 0;
+  border-left: 0;
+  border-right: 2px solid rgb(6, 0, 167);
   background-color: transparent;
   color: white;
+}
+
+.operator-btn:last-of-type{
+  border-right: 0;
 }
 
 .number-btn{
   background-color: rgb(119, 117, 117);
   border: 0;
   border-radius: 8px;
+}
+
+@media (max-width: 900px) {
+  #content-wrap{
+    width: 225px;
+  }
 }
