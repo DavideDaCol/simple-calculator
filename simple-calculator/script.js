@@ -25,17 +25,6 @@ buttons.forEach(el => {
 })
 
 function parseInput(current){
-  /*if(current === "AC"){
-    displayOnScreen(0);
-    reset();
-    return;
-  } else if (current === "."){
-    isDecimal = true;
-    if(isSecond){
-      document.getElementById("screen").innerHTML = `<h1>${secondOp}.</h1>`;
-    } else document.getElementById("screen").innerHTML = `<h1>${firstOp}.</h1>`;
-    return;
-  }*/
 
   switch (current) {
     case "AC":
@@ -60,16 +49,21 @@ function parseInput(current){
   const inp = Number(current);
 
   if((inp || inp === 0) && !isSecond){ // case: input is a number and the first value
+
     if(isDecimal){
-      handleDecimal(firstOp);
+      firstOp = handleDecimal(firstOp);
     }
+
     firstOp = (firstOp * 10) + (inp/(1*10**decLen));
     //the division only occurs if the decimal part is currently being written
     displayOnScreen(firstOp,decLen);
+
   } else if (isNaN(inp)){ // case: input is an operand
+    
     if(isNegative){
       firstOp = -firstOp;
     }
+
     if(isSecond){
       isNegative = false;
       evaluateExpression();
@@ -78,14 +72,16 @@ function parseInput(current){
       secondOp = 0;
       isSecond = !isSecond; // maintains the continuity when operations are chained
     }
+
     operation = current;
     isSecond = !isSecond;
     isDecimal = false;
     decLen = 0;
   } else{ //case: second value
     if(isDecimal){
-      handleDecimal(secondOp);
+      secondOp = handleDecimal(secondOp);
     }
+
     secondOp = (secondOp * 10) + (inp/(1*10**decLen)); //same as above
     displayOnScreen(secondOp,decLen);
   }
@@ -115,9 +111,12 @@ function displayOnScreen(num,round = 6){
   if(num % 1 !== 0){ // rounds number if it's a decimal
     num = num.toFixed(round); 
   }
+
   if(isNegative){
     document.getElementById("screen").innerHTML = `<h1>-${num}</h1>`;
-  } else document.getElementById("screen").innerHTML = `<h1>${num}</h1>`;
+  } else {
+    document.getElementById("screen").innerHTML = `<h1>${num}</h1>`
+  }
 }
 
 function reset(){
@@ -130,6 +129,7 @@ function reset(){
 function handleDecimal(decNum){
   decNum /= 10; //number gets divided by 10 so the decimal part doesn't make the number grow
   decLen++;
+  return decNum;
 }
 
 function getRounding(num){
