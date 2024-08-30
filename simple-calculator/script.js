@@ -43,7 +43,6 @@ function parseInput(current){
     if(isSecond){
       evaluateExpression();
       displayOnScreen(result,getRounding(result));
-      console.log(getRounding(result));
       firstOp = result; // treats result of previous operation as first value
       secondOp = 0;
       isSecond = !isSecond; // maintains the continuity when operations are chained
@@ -97,9 +96,9 @@ function reset(){
 }
 
 function getRounding(num){
-  if(num % 1 === 0){
+  if(num % 1 === 0){ // check if number is whole
     return 0
-  } else if (num*100000 % 1 !== 0){
+  } else if (num*100000 % 1 !== 0){ //if the number still isn't whole, round to 6 decimal
     return 6;
   } else return 1+getRounding(num*10);
 }
