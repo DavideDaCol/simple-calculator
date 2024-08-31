@@ -2,6 +2,8 @@
 
 Simple beginner JavaScript project, handles nearly every basic operation.
 
+The project can be viewed at https://davidedacol.github.io/simple-calculator/
+
 ### Known issues
 
 - the calculator cannot handle multipication and division with a negative second operand, due to the current implementation of the negative sign
